@@ -1,30 +1,16 @@
-import { openDb } from './configDB.js';
-
-import express from 'express';
+const express = require('express');
+const sequelize = require('sequelize');
 const app = express();
 const PORT = 3000;
 
-openDb();
+sequelize.sync().then(() => console.log("database connected succesfully!"))
 
 app.get('/', (req,res) => {
     console.log("get recebido")
     res.send(req.hostname)
 })
 
-app.post('/', (req,res) => {
-    console.log("post recebido")
-    res.send(req.hostname)
-})
-
-app.put('/', (req,res) => {
-    console.log("putrecebido")
-    res.send(req.hostname)
-})
-
-app.delete('/', (req,res) => {
-    console.log("delete recebido")
-    res.send(req.hostname)
-})
+app.use(express.json());
 
 app.listen(PORT, () => {
     console.log('App online na porta ' + PORT)
