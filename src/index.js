@@ -1,5 +1,7 @@
 const express = require('express');
-const sequelize = require('sequelize');
+const sequelize = require('./config');
+const Routes = require('./routes/index.routes');
+
 const app = express();
 const PORT = 3000;
 
@@ -11,6 +13,8 @@ app.get('/', (req,res) => {
 })
 
 app.use(express.json());
+
+app.use('/api/users', Routes);
 
 app.listen(PORT, () => {
     console.log('App online na porta ' + PORT)

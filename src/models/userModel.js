@@ -1,15 +1,19 @@
-const {Model,DataTypes} = require('sequelize');
-const sequelize = require("../config");
+const {Model, DataTypes} = require('sequelize');
+const sequelize = require('../config');
 
 class User extends Model{}
 
 User.init(
 {
     nick:{
-        type:DataTypes.STRING
+        type:DataTypes.STRING,
+        allowNull: false,
+        len: [5,20]
     },
     hashtag:{
-        type:DataTypes.STRING
+        type:DataTypes.STRING,
+        allowNull: false,
+        len: [2,4]
     }
 },
 {
